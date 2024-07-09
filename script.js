@@ -16,17 +16,17 @@ let counterValue = 10;
 let countDownId = setInterval(function(){
     counterValue = counterValue - 1;
     countDownElement.textContent = counterValue;
+    if(counterValue === 0){
+        clearInterval(reduniqueId);
+        clearInterval(greenuniqueId);
+        clearInterval(countDownId);
+        userInputElement.disabled = true;
+        imageElement.src = "./bang.png";
+        countDownElement.textContent = "";
+        backgroundContainerElement.style.backgroundColor = "#eb4034";
+    }
 },1000);
 
-let clearTimeOutId = setTimeout(function(){
-    clearInterval(reduniqueId);
-    clearInterval(greenuniqueId);
-    clearInterval(countDownId);
-    userInputElement.disabled = true;
-    imageElement.src = "./bang.png";
-    countDownElement.textContent = "";
-    backgroundContainerElement.style.backgroundColor = "#eb4034";
-},11000);
 
 let imageElement = document.getElementById("bombImage");
 let userInputElement = document.getElementById("userInput");
@@ -47,7 +47,6 @@ function check(event){
             imageElement.src = "./bang.png";
         }
         userInputElement.disabled = true;
-        clearTimeout(clearTimeOutId);
         clearInterval(countDownId);
     }
 }
